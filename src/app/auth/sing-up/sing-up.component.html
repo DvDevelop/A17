@@ -1,0 +1,24 @@
+<div class="form-wrapper">
+    <form [formGroup]="singupForm" (ngSubmit)="myalert()">
+        <label for="username">
+            Usuario
+            <input type="text" formControlName="username">
+        </label>
+        <label for="password">
+            Contraseña
+            <input type="password" formControlName="password">
+        </label>
+        <label for="passwordConfirm">
+            Confirma Contraseña
+            <input type="password" formControlName="passwordConfirm">
+        </label>
+        <label for="email">
+            Correo electronico
+            <input type="email" formControlName="email">
+        </label>
+        <button type="submit" [disabled]="!singupForm.valid">Entrar</button>
+    </form>
+    <pre>{{ singupForm.value | json}}</pre>
+    <pre>{{ singupForm.valid | json}}</pre>
+</div>
+<a routerLink="/Log-in">Log in</a>

@@ -1,0 +1,16 @@
+<div class="form-wrapper">
+    <form [formGroup]="loginForm" (ngSubmit)="myalert()">
+        <label for="identity">
+            Usuario
+            <input type="text" formControlName="identity">
+        </label>
+        <label for="password">
+            Contraseña
+            <input type="password" formControlName="password">
+        </label>
+        <button type="submit" [disabled]="!loginForm.valid">Entrar</button>
+    </form>
+    <pre>{{ loginForm.value | json}}</pre>
+    <pre>{{ loginForm.valid | json}}</pre>
+</div>
+<a routerLink="/Sing-up">Sing up</a>

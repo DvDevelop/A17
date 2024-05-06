@@ -1,0 +1,8 @@
+<pre>{{userinfo | json}}</pre>
+@if (islogin) {
+    <button (click)="logout()">Log Out</button>
+    
+}
+@else {
+    <button routerLink="login">log In</button>
+}
