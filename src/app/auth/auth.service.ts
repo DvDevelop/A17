@@ -61,11 +61,11 @@ export class AuthService {
   }
 
   isUserInfo(arg: any):arg is UserInfo {
-    return arg && (typeof(arg.avatar) == 'string')
+    return arg && ((arg.avatar || arg.avatar === '') && typeof(arg.avatar) == 'string')
     && (arg.collectionName && typeof(arg.collectionName) == 'string')
     && (arg.id && typeof(arg.id) == 'string')
     && (arg.email && typeof(arg.email) == 'string')
-    && (arg.name && typeof(arg.name) == 'string')
+    && ((arg.name || arg.name === '') && typeof(arg.name) == 'string')
     && (arg.username && typeof(arg.username) == 'string');
   }
 
