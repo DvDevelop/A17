@@ -3,17 +3,17 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
-import { UserInfo } from '../../dataTypes/auth-info';
+import { UserInfo } from '../../Shared/dataTypes/auth-info';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink,RouterOutlet,CommonModule],
+  imports: [RouterLink, RouterOutlet, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  private subscription : Subscription[] = [];
+  private subscription: Subscription[] = [];
 
   ngOnInit(): void {
     let aux: Subscription = this._authsvs.loggedIn$.subscribe(
@@ -23,15 +23,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
     this.subscription.push(aux);
     aux = this._authsvs.userinfo$.subscribe(
-        UserInfo =>{
-          this.userinfo = UserInfo
-        }
+      UserInfo => {
+        this.userinfo = UserInfo
+      }
     )
     this.subscription.push(aux);
   }
 
   ngOnDestroy(): void {
-    for (let sub of this.subscription){
+    for (let sub of this.subscription) {
       sub.unsubscribe()
     }
   }
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private readonly _authsvs = inject(AuthService);
   public islogin: boolean = false;
   public userinfo: UserInfo = {} as UserInfo;
-  logout():void{
+  logout(): void {
     this._authsvs.logOut()
   }
 }
